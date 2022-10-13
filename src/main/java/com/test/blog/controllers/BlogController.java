@@ -26,20 +26,38 @@ public class BlogController {
         return "blog-main";
     }
 
+    @GetMapping("/blog-access")
+    public String blogPass(Model model) {
+            return "blog-access";
+    }
+
+    @PostMapping("/blog-access")
+    public String blogGetPass(@RequestParam String password, Model model) {
+        if (password.equals("Passforblog1"))
+            return "redirect:/blog/add";
+        else
+            return "redirect:/blog-access";
+    }
+
     @GetMapping("/blog/add")
     public String blogAdd(Model model) {
         return "blog-add";
     }
 
+
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model) {
+    public String blogPostAdd(@RequestParam String title,
+                              @RequestParam String anons,
+                              @RequestParam String full_text,
+                              Model model) {
         Post post = new Post(title,anons,full_text);
         postRepository.save(post);
         return "redirect:/blog";
     }
 
     @GetMapping("/blog/{id}")
-    public String blogDetails(@PathVariable(value = "id") long id, Model model) {
+    public String blogDetails(@PathVariable(value = "id") long id,
+                              Model model) {
         if (!postRepository.existsById(id)) {
             return "redirect:/blog";
         }
@@ -51,7 +69,8 @@ public class BlogController {
     }
 
     @GetMapping("/blog/{id}/edit")
-    public String blogEdit(@PathVariable(value = "id") long id, Model model) {
+    public String blogEdit(@PathVariable(value = "id") long id,
+                           Model model) {
         if (!postRepository.existsById(id)) {
             return "redirect:/blog";
         }
@@ -77,7 +96,8 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/remove")
-    public String blogPostRemove(@PathVariable(value = "id") long id, Model model) {
+    public String blogPostRemove(@PathVariable(value = "id") long id,
+                                 Model model) {
         Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);
         return "redirect:/blog";
