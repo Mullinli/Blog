@@ -1,186 +1,269 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title th:text="${title}"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="description" content="Проект по созданию сайтов на заказ">
+    <meta name="author" content="Yaroslav">
+    <meta name="robots" content="all">
+    <meta property="og:title" content="Специалист по созданию профессиональных сайтов">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ярослав Латушков - веб программист</title>
 </head>
+
+
 <body>
 
-<header th:insert="blocks/header :: header"></header>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="nprogress.js"></script>
+    <script>
+        $(document).ready(function() {
+            NProgress.start();
+            NProgress.set(0.4);
+            setTimeout(function() {
+                NProgress.done();
+            }, 4000);
+        });
 
-<main>
+    </script>
+    <style type="text/css">
+        #hellopreloader>p {
+            display: none;
+        }
 
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Album example</h1>
-                <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-                <p>
-                    <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-                </p>
-            </div>
-        </div>
-    </section>
+        #hellopreloader_preload {
+            display: block;
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 1000px;
+            background: #E4F1FE url(http://hello-site.ru//main/images/preloads/circles.svg) center center no-repeat;
+            background-size: 131px;
+        }
 
-    <div class="album py-5 bg-light">
-        <div class="container">
+    </style>
+    <div id="hellopreloader">
+        <div id="hellopreloader_preload"></div>
+    </div>
+    <script type="text/javascript">
+        var hellopreloader = document.getElementById("hellopreloader_preload");
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        function fadeOutnojquery(el) {
+            el.style.opacity = 1;
+            var interhellopreloader = setInterval(function() {
+                el.style.opacity = el.style.opacity - 0.05;
+                if (el.style.opacity <= 0.05) {
+                    clearInterval(interhellopreloader);
+                    hellopreloader.style.display = "none";
+                }
+            }, 16);
+        }
+        window.onload = function() {
+            setTimeout(function() {
+                fadeOutnojquery(hellopreloader);
+            }, 500);
+        };
 
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+    </script>
+    <script src="https://kit.fontawesome.com/94d03cb7a6.js" crossorigin="anonymous"></script>
+    <header th:insert="blocks/header :: header"></header>
 
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="main">
+        <div class="title_container">
+            <h1>Привет! <br> Я, Ярослав Латушков </h1>
+            <h4>Full-Stack Web разработчик</h4>
         </div>
     </div>
 
-</main>
+    <div class="for_me">
+        <a name="me"><h3>ОБО МНЕ</h3></a>
+        <img class="line" src="img/underline.svg" alt="line">
+        <div class="img">
+            <img src="img/circle.png" alt="портрет" title="портрет">
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit dignissimos aspernatur placeat consequuntur corrupti delectus numquam minima laborum! Perferendis quaerat iusto deserunt. Architecto odio?<br>
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit dignissimos aspernatur placeat consequuntur corrupti delectus numquam minima laborum! Perferendis quaerat iusto deserunt. Architecto odio?</p>
+    </div>
 
-<footer th:insert="blocks/footer :: footer"></footer>
+
+    <a name="skill"></a> 
+    <div class="skill">
+
+
+        <h3>ЧТО Я УМЕЮ</h3>
+
+        <div class="line"><img src="img/underline.svg" alt="line"></div>
+
+        <div class="container_skills">
+
+
+            <div class="box_skills">
+
+                <img src="img/notebook.svg" alt="ноут">
+
+                <h4>Веб дизайн</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+
+
+            <div class="box_skills">
+
+                <img src="img/dev.svg" alt="разработка">
+
+                <h4>Разработка</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+
+
+            <div class="box_skills">
+
+                <img src="img/rocket.svg" alt="ракета">
+
+                <h4>Сео-Оптимизация</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+
+
+            <div class="box_skills">
+
+                <img src="img/gram.svg" alt="грамофон">
+
+                <h4>Маркетинг</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <a name="contact"></a>
+    <div class="contact">
+
+
+        <h3>МОИ КОНТАКТЫ</h3>
+
+
+
+        <div class="line"><img src="img/underline.svg" alt="line"></div>
+
+
+
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere quam aliquid nemo minima?</p>
+
+
+
+        <div class="my_contact_info">
+
+
+
+            <div class="my_contact_box">
+
+
+                <img src="img/geo.svg" alt="Геометка">
+
+
+                <p>Москва сити</p>
+
+
+            </div>
+
+
+
+            <div class="my_contact_box">
+
+
+                <img src="img/letter.svg" alt="Пиьмо">
+
+
+                <p>info@companyname.com</p>
+
+
+
+            </div>
+
+
+
+            <div class="my_contact_box">
+
+
+                <img src="img/phone.svg" alt="Труба">
+
+
+                <p>+7 999 999-99-99</p>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <p>ОСТАВЬТЕ МНЕ СООБЩЕНИЕ</p>
+
+
+
+        <form action="feedback">
+
+
+            <div class="client_contact_info">
+
+                <input type="text" name="text_input" value "" placeholder="Имя ">
+
+
+                <input type="e-mail" name="text_input" value "" placeholder="Email ">
+
+            </div>
+            <textarea placeholder="Cообщение" cols="45" rows="10"></textarea>
+
+
+            <div class="feedback_send_but">
+                <input type="submit" value="Отправить">
+            </div>
+
+
+        </form>
+
+
+
+
+        <div class="link-img">
+
+            <div class="fb"><a href=""><img src="img/fb.svg" alt="Facebook"></a></div>
+            <div class="tw"><a href=""><img src="img/twiter.svg" alt="Twiter"></a></div>
+            <div class="bl"><a href=""><img src="img/ball.svg" alt="Ball"></a></div>
+            <div class="gh"><a href="https://github.com/Mourelly"><img src="img/github.svg" alt="GitHub"></a></div>
+            <div class="in"><a href=""><img src="img/inst.svg" alt="Instagram"></a></div>
+            <div class="li"><a href=""><img src="img/linkedin.svg" alt="LinkedIn"></a></div>
+
+        </div>
+
+    </div>
+
+    <footer th:insert="blocks/footer :: footer"></footer>
+
+
 
 </body>
+
+
 </html>

@@ -26,19 +26,6 @@ public class BlogController {
         return "blog-main";
     }
 
-    @GetMapping("/blog-access")
-    public String blogPass(Model model) {
-            return "blog-access";
-    }
-
-    @PostMapping("/blog-access")
-    public String blogGetPass(@RequestParam String password, Model model) {
-        if (password.equals("Passforblog1"))
-            return "redirect:/blog/add";
-        else
-            return "redirect:/blog-access";
-    }
-
     @GetMapping("/blog/add")
     public String blogAdd(Model model) {
         return "blog-add";
