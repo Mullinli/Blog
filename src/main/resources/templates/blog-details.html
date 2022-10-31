@@ -3,26 +3,29 @@
 <head>
     <title>Блог сайта</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style th:insert="blocks/style_blogDetails :: style_blogDetails"></style>
 </head>
 <body>
 
+<div class="container">
+
 <header th:insert="blocks/header :: header"></header>
 
-<div class="container mt-5">
-    <div th:each ="el : ${post}" class="alert alert-info mt-2">
+
+    <div th:each ="el : ${post}" class="blogPosts">
         <h1 th:text="${el.title}"/>
         <p th:text="${el.fullText}"/>
         <p><b>Просмотры:</b> <span th:text="${el.views}" /></p>
-        <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <a th:href="'/blog/' + ${el.id} + '/edit'" class="btnEdit">Редактировать</a>
         <form th:action="'/blog/' + ${el.id} + '/remove'" method="post"> <br>
-        <button class="btn btn-warning" type="submit">Удалить</button>
+        <button class="btnDelete" type="submit">Удалить</button>
         </form>
     </div>
-</div>
+
 
 <footer th:insert="blocks/footer :: footer"></footer>
+
+</div>
+
 </body>
 </html>
